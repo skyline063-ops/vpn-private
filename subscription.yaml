@@ -1,10 +1,4 @@
-# ============================
-#   MINI REALITY TCP SUBSCRIPTION
-#   Optimized for Telegram Calls
-# ============================
-
 proxies:
-
   - name: DE-1-pimg
     type: vless
     server: 176.108.240.172
@@ -14,7 +8,7 @@ proxies:
     tls: true
     reality-opts:
       public-key: LW4kZEMbix1PIESoiJUi8pSl-uIaupCXn9LHq9znVDQ
-      short-id: ""
+      short-id: ''
     servername: pimg.mycdn.me
     network: tcp
     udp: true
@@ -28,7 +22,7 @@ proxies:
     tls: true
     reality-opts:
       public-key: P58JPgSU0wIgMZRT7KMiW2gQEWWJHExCLd7f6miNbGA
-      short-id: ""
+      short-id: ''
     servername: eh.vk.com
     network: tcp
     udp: true
@@ -42,7 +36,7 @@ proxies:
     tls: true
     reality-opts:
       public-key: j7T6rbiA1FJFK2bRJI3qNLse7RuICR6dFJXEiV5kzyI
-      short-id: ""
+      short-id: ''
     servername: eh.vk.com
     network: tcp
     udp: true
@@ -75,11 +69,6 @@ proxies:
     network: tcp
     udp: true
 
-
-# ============================
-#   PROXY GROUPS
-# ============================
-
 proxy-groups:
   - name: AUTO
     type: url-test
@@ -97,11 +86,6 @@ proxy-groups:
     proxies:
       - AUTO
       - DIRECT
-
-
-# ============================
-#   RULES
-# ============================
 
 rules:
   - DOMAIN-SUFFIX,telegram.org,TELEGRAM
