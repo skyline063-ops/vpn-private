@@ -1,0 +1,110 @@
+# ============================
+#   MINI REALITY TCP SUBSCRIPTION
+#   Optimized for Telegram Calls
+# ============================
+
+proxies:
+
+  - name: DE-1-pimg
+    type: vless
+    server: 176.108.240.172
+    port: 443
+    uuid: e9282d98-cbd3-41dd-b57a-32106ecbb440
+    flow: xtls-rprx-vision
+    tls: true
+    reality-opts:
+      public-key: LW4kZEMbix1PIESoiJUi8pSl-uIaupCXn9LHq9znVDQ
+      short-id: ""
+    servername: pimg.mycdn.me
+    network: tcp
+    udp: true
+
+  - name: DE-2-vk
+    type: vless
+    server: 178.72.186.28
+    port: 443
+    uuid: e9282d98-cbd3-41dd-b57a-32106ecbb440
+    flow: xtls-rprx-vision
+    tls: true
+    reality-opts:
+      public-key: P58JPgSU0wIgMZRT7KMiW2gQEWWJHExCLd7f6miNbGA
+      short-id: ""
+    servername: eh.vk.com
+    network: tcp
+    udp: true
+
+  - name: DE-3-vk
+    type: vless
+    server: 188.225.36.144
+    port: 443
+    uuid: e9282d98-cbd3-41dd-b57a-32106ecbb440
+    flow: xtls-rprx-vision
+    tls: true
+    reality-opts:
+      public-key: j7T6rbiA1FJFK2bRJI3qNLse7RuICR6dFJXEiV5kzyI
+      short-id: ""
+    servername: eh.vk.com
+    network: tcp
+    udp: true
+
+  - name: DE-4-47news
+    type: vless
+    server: 89.208.86.234
+    port: 443
+    uuid: 43709fca-a724-437f-86e0-bfe34b9833c6
+    flow: xtls-rprx-vision
+    tls: true
+    reality-opts:
+      public-key: kAfACVGlqkxdp5T0pF_8rP8ElZ6mYSNnpP1NDnSr9H8
+      short-id: f2e2d4c4b6a70788
+    servername: m.47news.ru
+    network: tcp
+    udp: true
+
+  - name: DE-5-rutube
+    type: vless
+    server: 89.208.86.234
+    port: 443
+    uuid: 43709fca-a724-437f-86e0-bfe34b9833c6
+    flow: xtls-rprx-vision
+    tls: true
+    reality-opts:
+      public-key: kAfACVGlqkxdp5T0pF_8rP8ElZ6mYSNnpP1NDnSr9H8
+      short-id: 5f0a12bc43de5678
+    servername: static.rutube.ru
+    network: tcp
+    udp: true
+
+
+# ============================
+#   PROXY GROUPS
+# ============================
+
+proxy-groups:
+  - name: AUTO
+    type: url-test
+    proxies:
+      - DE-1-pimg
+      - DE-2-vk
+      - DE-3-vk
+      - DE-4-47news
+      - DE-5-rutube
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+
+  - name: TELEGRAM
+    type: select
+    proxies:
+      - AUTO
+      - DIRECT
+
+
+# ============================
+#   RULES
+# ============================
+
+rules:
+  - DOMAIN-SUFFIX,telegram.org,TELEGRAM
+  - DOMAIN-SUFFIX,t.me,TELEGRAM
+  - DOMAIN-SUFFIX,cdn-telegram.org,TELEGRAM
+  - MATCH,AUTO
