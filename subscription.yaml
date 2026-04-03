@@ -1,4 +1,5 @@
 mixed-port: 7890
+mode: rule
 
 proxies:
   - name: DE-1-pimg
@@ -71,3 +72,26 @@ proxies:
     network: tcp
     udp: true
 
+proxy-groups:
+  - name: AUTO
+    type: url-test
+    proxies:
+      - DE-1-pimg
+      - DE-2-vk
+      - DE-3-vk
+      - DE-4-47news
+      - DE-5-rutube
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+
+  - name: TELEGRAM
+    type: select
+    proxies:
+      - AUTO
+      - DIRECT
+
+rules:
+  - DOMAIN-SUFFIX,telegram.org,TELEGRAM
+  - DOMAIN-SUFFIX,t.me,TELEGRAM
+  - DOMAIN-SUFFIX,cdn-telegram.org,TELEGRAM
+  - MATCH,AUTO
